@@ -2,17 +2,20 @@ package com.frompast.email.frompastinaction.controller;
 
 import com.frompast.email.frompastinaction.exception.SendMailWithAttachmentException;
 import com.frompast.email.frompastinaction.service.EmailService;
-import jakarta.mail.MessagingException;
-import jakarta.mail.internet.MimeMessage;
+import jakarta.mail.Message;
+import jakarta.mail.internet.InternetAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
+import java.util.Objects;
 
 @Service
 public class EmailServiceImpl implements EmailService {
@@ -37,22 +40,22 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     public void sendEmailWithAttachment(String to, String subject, String body, String attachmentPath) {
-        try {
-            MimeMessage message = mailSender.createMimeMessage();
-
-            MimeMessageHelper helper = new MimeMessageHelper(message, true);
-
-            helper.setFrom(from);
-            helper.setTo(to);
-            helper.setSubject(subject);
-            helper.setText(body);
+        MimeMessagePreparator preparator = mimeMessage -> {
+            mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
+            mimeMessage.setFrom(new InternetAddress(from));
+            mimeMessage.setSubject(subject);
+            mimeMessage.setText(body);
 
             FileSystemResource file = new FileSystemResource(new File(attachmentPath));
-            helper.addAttachment("Invoice", file);
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
+            helper.addAttachment(Objects.requireNonNull(file.getFilename()), file);
+        };
 
-            mailSender.send(message);
-        } catch (MessagingException e) {
-            throw new SendMailWithAttachmentException(e);
+        try {
+            mailSender.send(preparator);
+        }
+        catch (MailException ex) {
+            throw new SendMailWithAttachmentException(ex);
         }
     }
 }

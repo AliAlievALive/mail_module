@@ -2,11 +2,13 @@ package com.frompast.email.frompastinaction.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.Objects;
 
 @Getter
 @Setter
+@ToString
 public class EmailRequestWithAttachment extends EmailRequest{
 
     private String attachmentPath;

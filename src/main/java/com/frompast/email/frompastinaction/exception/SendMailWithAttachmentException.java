@@ -1,9 +1,9 @@
 package com.frompast.email.frompastinaction.exception;
 
-import jakarta.mail.MessagingException;
+import org.springframework.mail.MailException;
 
 public class SendMailWithAttachmentException extends RuntimeException {
-    public SendMailWithAttachmentException(MessagingException e) {
+    public SendMailWithAttachmentException(MailException e) {
         super(e);
     }
 }
