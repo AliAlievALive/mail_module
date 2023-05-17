@@ -2,11 +2,8 @@ package com.frompast.email.frompastinaction.controller;
 
 import com.frompast.email.frompastinaction.exception.SendMailWithAttachmentException;
 import com.frompast.email.frompastinaction.service.EmailService;
-import jakarta.mail.Message;
-import jakarta.mail.internet.InternetAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -41,14 +38,14 @@ public class EmailServiceImpl implements EmailService {
     @Override
     public void sendEmailWithAttachment(String to, String subject, String body, String attachmentPath) {
         MimeMessagePreparator preparator = mimeMessage -> {
-            mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
-            mimeMessage.setFrom(new InternetAddress(from));
-            mimeMessage.setSubject(subject);
-            mimeMessage.setText(body);
-
-            FileSystemResource file = new FileSystemResource(new File(attachmentPath));
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
-            helper.addAttachment(Objects.requireNonNull(file.getFilename()), file);
+
+            helper.setFrom(from);
+            helper.setTo(to);
+            helper.setSubject(subject);
+            helper.setText(body);
+            File file = new File(attachmentPath);
+            helper.addAttachment(Objects.requireNonNull(file.getName()), file);
         };
 
         try {
