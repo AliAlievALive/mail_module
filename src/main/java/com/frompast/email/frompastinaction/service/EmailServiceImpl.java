@@ -36,9 +36,8 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     public void sendEmailWithAttachment(String to, String subject, String body, String attachmentPath) {
-        MimeMessagePreparator preparator = mimeMessage -> {
+        MimeMessagePreparator preparatory = mimeMessage -> {
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
-
             helper.setFrom(from);
             helper.setTo(to);
             helper.setSubject(subject);
@@ -48,7 +47,7 @@ public class EmailServiceImpl implements EmailService {
         };
 
         try {
-            mailSender.send(preparator);
+            mailSender.send(preparatory);
         }
         catch (MailException ex) {
             throw new SendMailWithAttachmentException(ex);
