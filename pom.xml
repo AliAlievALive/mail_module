@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.frompast.email</groupId>
-    <artifactId>fromPastInAction</artifactId>
+    <artifactId>from_past_in_action</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>fromPastInAction</name>
     <description>fromPastInAction</description>
