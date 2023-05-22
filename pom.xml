@@ -62,6 +62,9 @@
                     <image>
                         <name>${docker.image.prefix}/${project.artifactId}:latest</name>
                     </image>
+                    <layers>
+                        <enabled>true</enabled>
+                    </layers>
                 </configuration>
             </plugin>
         </plugins>
