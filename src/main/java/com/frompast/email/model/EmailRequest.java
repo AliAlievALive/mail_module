@@ -1,4 +1,4 @@
-package com.frompast.email.frompastinaction.model;
+package com.frompast.email.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

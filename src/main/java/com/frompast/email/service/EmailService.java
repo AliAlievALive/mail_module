@@ -1,4 +1,4 @@
-package com.frompast.email.frompastinaction.service;
+package com.frompast.email.service;
 
 public interface EmailService {
     void sendEmail(String to, String subject, String body);

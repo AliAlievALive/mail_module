@@ -1,7 +1,7 @@
-package com.frompast.email.frompastinaction;
+package com.frompast.email;
 
-import com.frompast.email.frompastinaction.service.EmailServiceImpl;
-import com.frompast.email.frompastinaction.exception.SendMailWithAttachmentException;
+import com.frompast.email.exception.SendMailWithAttachmentException;
+import com.frompast.email.service.EmailServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

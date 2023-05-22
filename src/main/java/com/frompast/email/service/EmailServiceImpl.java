@@ -1,6 +1,6 @@
-package com.frompast.email.frompastinaction.service;
+package com.frompast.email.service;
 
-import com.frompast.email.frompastinaction.exception.SendMailWithAttachmentException;
+import com.frompast.email.exception.SendMailWithAttachmentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailException;

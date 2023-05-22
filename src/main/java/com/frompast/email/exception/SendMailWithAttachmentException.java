@@ -1,4 +1,4 @@
-package com.frompast.email.frompastinaction.exception;
+package com.frompast.email.exception;
 
 import org.springframework.mail.MailException;
 

@@ -1,8 +1,8 @@
-package com.frompast.email.frompastinaction.controller;
+package com.frompast.email.controller;
 
-import com.frompast.email.frompastinaction.model.EmailRequest;
-import com.frompast.email.frompastinaction.model.EmailRequestWithAttachment;
-import com.frompast.email.frompastinaction.service.EmailService;
+import com.frompast.email.model.EmailRequest;
+import com.frompast.email.model.EmailRequestWithAttachment;
+import com.frompast.email.service.EmailService;
 import org.springframework.context.MessageSource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
