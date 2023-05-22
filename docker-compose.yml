@@ -1,0 +1,17 @@
+version: '0.1'
+
+services:
+  emailservice:
+    image: from_past_in_action:latest
+    ports:
+      - "8080:8080"
+    environment:
+      - "SPRING_PROFILES_ACTIVE=dev"
+    networks:
+      backend:
+        aliases:
+          - "emailservice"
+
+networks:
+  backend:
+    driver: bridge
